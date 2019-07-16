@@ -12,7 +12,7 @@ module.exports = {
     devServer: {
       open: true,
       https: false,
-      hotOnly: true,
+      hotOnly: false,
     }
   }
 };

@@ -6,7 +6,7 @@ export const http = (config) => {
   // 创建实例
   const instance = axios.create({
     baseURL: 'http://123.207.32.32:8000',
-    timeout: 5000
+    timeout: 8000
   });
 
   // 请求拦截
@@ -20,6 +20,7 @@ export const http = (config) => {
   instance.interceptors.response.use(res => {
     return res.data;
   }, err => {
+    console.log(err);
     return Promise.reject(err)
   });
 

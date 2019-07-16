@@ -1,10 +1,18 @@
 <template>
-	<div>category</div>
+	<div>
+    <scroll class="content">
+      <div></div>
+    </scroll>
+  </div>
 </template>
 
 <script>
+  import Scroll from 'components/common/scroll/Scroll'
   export default {
-    name: "Category"
+    name: "Category",
+    components: {
+      Scroll
+    }
   }
 </script>
 

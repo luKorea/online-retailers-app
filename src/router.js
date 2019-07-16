@@ -7,7 +7,7 @@ const Home = () => import('views/home/Home');
 const Category = () => import('views/category/Category');
 const Cart = () => import('views/cart/Cart');
 const ProFile = () => import('views/profile/ProFile');
-
+const Details = () => import('views/details/Details');
 
 const router = new VueRouter({
   mode: 'history',
@@ -36,6 +36,11 @@ const router = new VueRouter({
       path: '/profile',
       component: ProFile,
       meta: { title: '个人资料' }
+    },
+    {
+      path: '/details/:iid',
+      component: Details,
+      meta: { title: '详情页' }
     }
   ]
 });
