@@ -49,7 +49,7 @@
   import BackTop from 'components/common/backTop/BackTop'
 
   import { reqMultidata, reqGoods } from 'http/home'
-  import {debounce} from 'common/utils'
+  import {itemImageListenerMixin} from 'common/mixin'
 
   export default {
     name: "Home",
@@ -63,6 +63,7 @@
       HomeRecommend,
       HomeWeekFashion
     },
+    mixins: [itemImageListenerMixin],
     data () {
       return {
         banner: [],   // 轮播图
@@ -107,8 +108,9 @@
             this.curreyType = 'sell';
             break;
         }
-        this.$refs.tabControl1.currentIndex = index;
-        this.$refs.tabControl2.currentIndex = index;
+          this.$refs.tabControl1.currentIndex = index;
+          this.$refs.tabControl2.currentIndex = index;
+
       },
       // TODO 点击回到顶部
       backTop () {
@@ -147,7 +149,9 @@
         this.goods[type].list.push(...goods.list);
         this.goods[type].page += 1;
         this.$refs.scroll.finishPullUp()
-      }
+      },
+
+
     },
     created() {
       this.getBannerOrRecommend();
@@ -156,11 +160,7 @@
       this.getGoods('sell');
     },
     mounted() {
-      // TODO 监听图片加载高度变化，实时刷新better-scroll高度
-      const refresh = debounce(this.$refs.scroll.refresh, 200);
-      this.$bus.$on('imgLoad', () => {
-        refresh();
-      });
+      this.tabClick(0);
     },
     // TODO  保存用户上一次浏览的位置
     activated() {
@@ -168,7 +168,10 @@
       // this.$refs.scroll.refresh();
     },
     deactivated() {
+      // 保存位置
       this.saveY = this.$refs.scroll.scroll.y;
+      // TODO bug 取消保存
+      this.$bus.$off('swipeImgLoad', this.itemImageListener);
     }
   }
 </script>

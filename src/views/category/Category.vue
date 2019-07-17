@@ -1,18 +1,10 @@
 <template>
-	<div>
-    <scroll class="content">
-      <div></div>
-    </scroll>
-  </div>
+	<div>分类页未完成</div>
 </template>
 
 <script>
-  import Scroll from 'components/common/scroll/Scroll'
   export default {
-    name: "Category",
-    components: {
-      Scroll
-    }
+    name: "Category"
   }
 </script>
 

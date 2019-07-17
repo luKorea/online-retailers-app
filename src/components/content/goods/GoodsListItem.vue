@@ -1,7 +1,7 @@
 <template>
 	<div class="goods-item">
     <img
-      :src="goodsItem.show.img"
+      v-lazy="isShowImage"
       :alt="goodsItem.title"
       @load="imgLoad"
       @click="getDetails"
@@ -27,7 +27,13 @@
         this.$bus.$emit('imgLoad')
       },
       getDetails () {
+        // TODO 跳转到详情页
         this.$router.push(`/details/${this.goodsItem.iid}`);
+      }
+    },
+    computed: {
+      isShowImage () {
+        return this.goodsItem.image || this.goodsItem.show.img
       }
     }
   }
